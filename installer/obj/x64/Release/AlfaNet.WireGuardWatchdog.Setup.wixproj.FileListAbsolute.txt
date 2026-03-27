@@ -1,0 +1,6 @@
+C:\dev\Vigila_WireGuard\installer\bin\x64\Release\AlfaNet.WireGuardWatchdog.Setup.msi
+C:\dev\Vigila_WireGuard\installer\bin\x64\Release\AlfaNet.WireGuardWatchdog.Setup.wixpdb
+C:\dev\Vigila_WireGuard\installer\obj\x64\Release\AlfaNet.WireGuardWatchdog.Setup.wixproj.CoreCompileInputs.cache
+C:\dev\Vigila_WireGuard\installer\obj\x64\Release\AlfaNet.WireGuardWatchdog.Setup.msi
+C:\dev\Vigila_WireGuard\installer\obj\x64\Release\AlfaNet.WireGuardWatchdog.Setup.wixpdb
+C:\dev\Vigila_WireGuard\installer\obj\x64\Release\AlfaNet.WireGuardWatchdog.Setup.wixproj.BindTracking-neutral.txt

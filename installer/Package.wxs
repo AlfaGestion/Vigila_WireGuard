@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Package
+    Name="AlfaNet WireGuard Watchdog"
+    Manufacturer="Alfa Gestion"
+    Version="$(var.ProductVersion)"
+    UpgradeCode="B1708CE3-E25B-40D5-8649-0749F2527814"
+    Language="1033"
+    Scope="perMachine"
+    InstallerVersion="500"
+    Compressed="yes">
+
+    <SummaryInformation Manufacturer="Alfa Gestion" />
+    <MajorUpgrade DowngradeErrorMessage="Ya hay una version mas nueva de AlfaNet WireGuard Watchdog instalada." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <StandardDirectory Id="ProgramFiles64Folder">
+      <Directory Id="ManufacturerFolder" Name="Alfa Gestion">
+        <Directory Id="INSTALLFOLDER" Name="WireGuard Watchdog">
+          <Directory Id="UPDATERFOLDER" Name="Updater" />
+        </Directory>
+      </Directory>
+    </StandardDirectory>
+
+    <Feature Id="MainFeature" Title="AlfaNet WireGuard Watchdog" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+      <ComponentGroupRef Id="UpdaterComponents" />
+    </Feature>
+  </Package>
+
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <Component Id="ServiceExecutableComponent" Guid="7CC514AF-7462-4849-8B0F-F2F5876553A7">
+        <File
+          Id="ServiceExecutableFile"
+          Source="$(var.PublishDir)\AlfaNet.WireGuardWatchdog.exe"
+          KeyPath="yes"
+          Checksum="yes" />
+        <ServiceInstall
+          Id="ServiceInstaller"
+          Type="ownProcess"
+          Name="AlfaNet.WireGuardWatchdog"
+          DisplayName="AlfaNet WireGuard Watchdog"
+          Description="Supervisa y autorecupera la conectividad de un tunel WireGuard."
+          Start="auto"
+          ErrorControl="normal" />
+        <ServiceControl
+          Id="ServiceLifecycle"
+          Name="AlfaNet.WireGuardWatchdog"
+          Start="install"
+          Stop="both"
+          Remove="uninstall"
+          Wait="yes" />
+      </Component>
+
+      <Files Include="$(var.PublishDir)\*">
+        <Exclude Files="$(var.PublishDir)\AlfaNet.WireGuardWatchdog.exe" />
+        <Exclude Files="$(var.PublishDir)\*.pdb" />
+      </Files>
+    </ComponentGroup>
+
+    <ComponentGroup Id="UpdaterComponents" Directory="UPDATERFOLDER">
+      <Component Id="UpdaterExecutableComponent" Guid="792A7A69-C860-4750-AE91-29672A59D984">
+        <File
+          Id="UpdaterExecutableFile"
+          Source="$(var.UpdaterPublishDir)\AlfaNet.WireGuardWatchdog.Updater.exe"
+          KeyPath="yes"
+          Checksum="yes" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

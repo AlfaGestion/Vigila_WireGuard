@@ -1,0 +1,13 @@
+{
+  "version": "1.0.0",
+  "publishedAtUtc": "2026-03-27T10:52:15Z",
+  "channel": "stable",
+  "mandatory": false,
+  "package": {
+    "type": "zip",
+    "url": "https://www.alfagestion.com.ar/wireguard-watchdog/releases/1.0.0/AlfaNet.WireGuardWatchdog-win-x64-1.0.0.zip",
+    "sha256": "bb2ac17ea1c02afe2542dc251fd0d058d93d8e73484d9b065a8aa0f8a8cf8ca7",
+    "sizeBytes": 836747,
+    "entryExecutable": "AlfaNet.WireGuardWatchdog.exe"
+  }
+}

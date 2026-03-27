@@ -1,0 +1,45 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\dev\\Vigila_WireGuard\\installer\\AlfaNet.WireGuardWatchdog.Setup.wixproj": {}
+  },
+  "projects": {
+    "C:\\dev\\Vigila_WireGuard\\installer\\AlfaNet.WireGuardWatchdog.Setup.wixproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\dev\\Vigila_WireGuard\\installer\\AlfaNet.WireGuardWatchdog.Setup.wixproj",
+        "projectName": "AlfaNet.WireGuardWatchdog.Setup",
+        "projectPath": "C:\\dev\\Vigila_WireGuard\\installer\\AlfaNet.WireGuardWatchdog.Setup.wixproj",
+        "packagesPath": "C:\\Users\\albert\\.nuget\\packages\\",
+        "outputPath": "C:\\dev\\Vigila_WireGuard\\installer\\obj\\",
+        "projectStyle": "PackageReference",
+        "UsingMicrosoftNETSdk": false,
+        "configFilePaths": [
+          "C:\\Users\\albert\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "native"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "native": {
+            "targetAlias": "native",
+            "projectReferences": {}
+          }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "native": {
+          "targetAlias": "native"
+        }
+      }
+    }
+  }
+}

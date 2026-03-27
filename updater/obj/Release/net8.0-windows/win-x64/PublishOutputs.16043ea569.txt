@@ -1,0 +1,2 @@
+C:\dev\Vigila_WireGuard\publish\updater\win-x64\AlfaNet.WireGuardWatchdog.Updater.pdb
+C:\dev\Vigila_WireGuard\publish\updater\win-x64\AlfaNet.WireGuardWatchdog.Updater.exe
