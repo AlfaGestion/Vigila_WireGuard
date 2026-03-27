@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WixLocalization xmlns="http://wixtoolset.org/schemas/v4/wxl" Culture="es-ES">
+  <String Id="WelcomeDlgDescription" Value="Este asistente instalará AlfaNet WireGuard Watchdog en su equipo. Haga clic en Siguiente para continuar o en Cancelar para salir del instalador." />
+  <String Id="InstallDirDlgDescription" Value="Seleccione la carpeta donde desea instalar AlfaNet WireGuard Watchdog." />
+  <String Id="VerifyReadyDlgTitle" Value="Listo para instalar" />
+  <String Id="VerifyReadyDlgDescription" Value="Haga clic en Instalar para comenzar la instalación del servicio." />
+  <String Id="ProgressDlgTitleInstalling" Value="Instalando AlfaNet WireGuard Watchdog" />
+  <String Id="ProgressDlgTitleRepairing" Value="Reparando AlfaNet WireGuard Watchdog" />
+  <String Id="ProgressDlgTitleRemoving" Value="Quitando AlfaNet WireGuard Watchdog" />
+  <String Id="ExitDialogOptionalText" Value="Instalación completada correctamente." />
+</WixLocalization>

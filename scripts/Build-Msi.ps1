@@ -7,7 +7,7 @@ param(
     [string]$RuntimeIdentifier = "win-x64",
 
     [Parameter(Mandatory = $false)]
-    [switch]$SelfContained
+    [bool]$SelfContained = $true
 )
 
 Set-StrictMode -Version Latest
@@ -42,7 +42,7 @@ if ($LASTEXITCODE -ne 0) {
     throw "Fallo dotnet publish."
 }
 
-& dotnet publish $updaterProject -c Release -r $RuntimeIdentifier --self-contained false -p:PublishSingleFile=true --output $updaterPublishDir
+& dotnet publish $updaterProject -c Release -r $RuntimeIdentifier --self-contained true -p:PublishSingleFile=true --output $updaterPublishDir
 if ($LASTEXITCODE -ne 0) {
     throw "Fallo dotnet publish del updater."
 }

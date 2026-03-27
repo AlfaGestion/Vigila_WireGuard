@@ -1,11 +1,35 @@
 {
   "version": 3,
   "targets": {
-    "native,Version=v0.0": {}
+    "native,Version=v0.0": {
+      "WixToolset.UI.wixext/5.0.2": {
+        "type": "package",
+        "build": {
+          "build/WixToolset.UI.wixext.targets": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "WixToolset.UI.wixext/5.0.2": {
+      "sha512": "BP2IonPN5/0csF1esRb1A834aknY+wO421hXOP+Ix730YxQvSXgk6kV9uFnVHlrVMXxunXpuqEf2qqOQuvWoQw==",
+      "type": "package",
+      "path": "wixtoolset.ui.wixext/5.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/WixToolset.UI.wixext.targets",
+        "wix.png",
+        "wixext5/WixToolset.UI.wixext.dll",
+        "wixtoolset.ui.wixext.5.0.2.nupkg.sha512",
+        "wixtoolset.ui.wixext.nuspec"
+      ]
+    }
+  },
   "projectFileDependencyGroups": {
-    "native,Version=v0.0": []
+    "native,Version=v0.0": [
+      "WixToolset.UI.wixext >= 5.0.2"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\albert\\.nuget\\packages\\": {}
@@ -43,7 +67,13 @@
     },
     "frameworks": {
       "native": {
-        "targetAlias": "native"
+        "targetAlias": "native",
+        "dependencies": {
+          "WixToolset.UI.wixext": {
+            "target": "Package",
+            "version": "[5.0.2, )"
+          }
+        }
       }
     }
   }

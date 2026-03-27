@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
+     xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui">
   <Package
     Name="AlfaNet WireGuard Watchdog"
     Manufacturer="Alfa Gestion"
     Version="$(var.ProductVersion)"
     UpgradeCode="B1708CE3-E25B-40D5-8649-0749F2527814"
-    Language="1033"
+    Language="3082"
     Scope="perMachine"
     InstallerVersion="500"
     Compressed="yes">
@@ -13,6 +14,11 @@
     <SummaryInformation Manufacturer="Alfa Gestion" />
     <MajorUpgrade DowngradeErrorMessage="Ya hay una version mas nueva de AlfaNet WireGuard Watchdog instalada." />
     <MediaTemplate EmbedCab="yes" />
+    <Property
+      Id="WIXUI_EXITDIALOGOPTIONALTEXT"
+      Value="Instalación completada. El servicio AlfaNet WireGuard Watchdog quedó instalado. Si no se inició automáticamente, revíselo en Servicios de Windows o en los logs del sistema." />
+    <ui:WixUI Id="WixUI_InstallDir" InstallDirectory="INSTALLFOLDER" />
+    <WixVariable Id="WixUILicenseRtf" Value="license-es.rtf" />
 
     <StandardDirectory Id="ProgramFiles64Folder">
       <Directory Id="ManufacturerFolder" Name="Alfa Gestion">

@@ -20,8 +20,10 @@ El servicio ejecuta un loop de monitoreo con estas reglas:
 - `Interfaces/`: contratos para facilitar mantenimiento, pruebas y futuras extensiones.
 - `Services/`: implementaciones de conectividad, política de recuperación, control de WireGuard y logging.
 - `Utils/`: utilidades de encapsulación técnica.
+- `updater/`: proyecto separado para autoactualización.
+- `installer/`: proyecto WiX del instalador MSI.
+- `scripts/`: automatización de instalación, build y actualización.
 - `appsettings.json`: configuración operativa.
-- `scripts/ServiceControl.ps1`: instalación y administración del servicio.
 
 ## Configuración
 
@@ -46,26 +48,37 @@ Editar `appsettings.json`:
 ## Requisitos
 
 - Windows con WireGuard ya instalado.
-- `.NET 8 SDK` para compilar.
-- Permisos de administrador para instalar el servicio.
+- `.NET 8 SDK` para compilar el proyecto.
+- Permisos de administrador para instalar el servicio y registrar la tarea de actualización.
+
+Nota: el artefacto distribuido al cliente es `self-contained`, por lo que el cliente no necesita tener `.NET` instalado.
 
 ## Compilación
 
 ```powershell
 dotnet restore
-dotnet build -c Release
+dotnet build Vigila_WireGuard.sln -c Release
 ```
 
 ## Publicación self-contained win-x64
 
+Publicación manual del servicio:
+
 ```powershell
-dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true
+dotnet publish AlfaNet.WireGuardWatchdog.csproj -c Release -r win-x64 --self-contained true -o .\publish\win-x64
 ```
 
-Salida esperada:
+Publicación manual del updater:
+
+```powershell
+dotnet publish .\updater\AlfaNet.WireGuardWatchdog.Updater.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o .\publish\updater\win-x64
+```
+
+Salidas esperadas:
 
 ```text
-bin\Release\net8.0\win-x64\publish\
+publish\win-x64\
+publish\updater\win-x64\
 ```
 
 ## Instalación del servicio
@@ -73,7 +86,7 @@ bin\Release\net8.0\win-x64\publish\
 Ejemplo manual con `sc.exe`:
 
 ```powershell
-sc.exe create AlfaNet.WireGuardWatchdog binPath= "C:\Ruta\publish\AlfaNet.WireGuardWatchdog.exe" start= auto
+sc.exe create AlfaNet.WireGuardWatchdog binPath= "C:\Ruta\AlfaNet.WireGuardWatchdog.exe" start= auto
 sc.exe start AlfaNet.WireGuardWatchdog
 ```
 
@@ -87,62 +100,14 @@ O usando el script provisto:
 Si querés instalar otra compilación o una carpeta distinta, podés indicar la ruta manualmente:
 
 ```powershell
-.\scripts\ServiceControl.ps1 -Action Install -ExecutablePath "C:\Ruta\publish\AlfaNet.WireGuardWatchdog.exe"
+.\scripts\ServiceControl.ps1 -Action Install -ExecutablePath "C:\Ruta\AlfaNet.WireGuardWatchdog.exe"
 ```
 
-## Comandos del script
-
-```powershell
-.\scripts\ServiceControl.ps1 -Action Install
-.\scripts\ServiceControl.ps1 -Action Uninstall
-.\scripts\ServiceControl.ps1 -Action Start
-.\scripts\ServiceControl.ps1 -Action Stop
-.\scripts\ServiceControl.ps1 -Action Restart
-.\scripts\ServiceControl.ps1 -Action Status
-```
-
-Comportamiento del instalador:
+Comportamiento del script:
 
 - usa por defecto `publish\win-x64\AlfaNet.WireGuardWatchdog.exe`
 - crea la carpeta de logs configurada en `appsettings.json` si todavía no existe
 - instala el servicio con inicio automático
-
-## Distribución web y actualizaciones
-
-Sitio previsto:
-
-- `https://www.alfagestion.com.ar/wireguard-watchdog/`
-
-Estructura recomendada en la web:
-
-- `https://www.alfagestion.com.ar/wireguard-watchdog/latest.json`
-- `https://www.alfagestion.com.ar/wireguard-watchdog/releases/1.0.0/AlfaNet.WireGuardWatchdog-win-x64-1.0.0.zip`
-
-Preparar una release web desde la salida publicada:
-
-```powershell
-.\scripts\Prepare-WebRelease.ps1 -Version 1.0.0
-```
-
-Salida local generada:
-
-- `deploy\output\latest.json`
-- `deploy\output\releases\1.0.0\release.json`
-- `deploy\output\releases\1.0.0\AlfaNet.WireGuardWatchdog-win-x64-1.0.0.zip`
-
-Flujo de publicación sugerido:
-
-1. Ejecutar `dotnet publish`.
-2. Ejecutar `.\scripts\Prepare-WebRelease.ps1 -Version x.y.z`.
-3. Subir el `.zip` a `releases/x.y.z/`.
-4. Subir `latest.json` a la raíz del sitio.
-5. Mantener también `release.json` dentro de la carpeta versionada para auditoría.
-
-Qué falta para autoactualización completa:
-
-- firma digital del instalador y del ejecutable
-- opcionalmente agregar canales `stable` y `beta`
-- endurecer rollback y telemetría de actualizaciones
 
 ## Autoactualización
 
@@ -176,29 +141,31 @@ Ejemplos:
 .\scripts\UpdateTaskControl.ps1 -Action Unregister
 ```
 
-La tarea usa por defecto:
+Valores por defecto de la tarea:
 
 - updater instalado en `C:\Program Files\Alfa Gestion\WireGuard Watchdog\Updater`
 - manifiesto `https://www.alfagestion.com.ar/wireguard-watchdog/latest.json`
 - frecuencia de chequeo cada 6 horas
 
-El flujo del MSI ahora también publica e incluye el updater.
-
 ## Instalador MSI
 
-Se agregó un scaffold WiX en:
+El instalador se genera con WiX desde:
 
 - `installer\AlfaNet.WireGuardWatchdog.Setup.wixproj`
 - `installer\Package.wxs`
+- `installer\license-es.rtf`
+- `installer\es-es.wxl`
 
 Objetivo del instalador:
 
 - instala en `C:\Program Files\Alfa Gestion\WireGuard Watchdog`
 - registra el servicio `AlfaNet.WireGuardWatchdog`
+- instala también el updater en `Updater\`
 - deja el servicio en inicio automático
 - soporta `MajorUpgrade` para reemplazar versiones anteriores
+- muestra interfaz en español
 
-Flujo sugerido de build:
+Build sugerido:
 
 ```powershell
 .\scripts\Build-Msi.ps1 -Version 1.0.0
@@ -211,12 +178,60 @@ Ese script:
 3. compila el proyecto WiX
 4. genera el MSI del instalador
 
-Notas:
+Modo de publicación actual:
 
-- el scaffold apunta hoy a la salida `publish\win-x64`
-- para evitar símbolos innecesarios, el instalador excluye `*.pdb`
-- el MSI instala también `Updater\AlfaNet.WireGuardWatchdog.Updater.exe`
-- el siguiente paso natural es firmar el `.msi` y subirlo junto al `latest.json`
+- servicio `self-contained`
+- updater `self-contained`
+- no requiere que el cliente tenga `.NET` instalado
+
+Salida actual del MSI:
+
+```text
+installer\bin\x64\Release\es-ES\AlfaNet.WireGuardWatchdog.Setup.msi
+```
+
+## Distribución web
+
+Sitio previsto:
+
+- `https://www.alfagestion.com.ar/wireguard-watchdog/`
+
+Estructura recomendada:
+
+- `https://www.alfagestion.com.ar/wireguard-watchdog/index.html`
+- `https://www.alfagestion.com.ar/wireguard-watchdog/AlfaNet.WireGuardWatchdog.Setup.msi`
+- `https://www.alfagestion.com.ar/wireguard-watchdog/latest.json`
+- `https://www.alfagestion.com.ar/wireguard-watchdog/releases/1.0.0/AlfaNet.WireGuardWatchdog-win-x64-1.0.0.zip`
+- `https://www.alfagestion.com.ar/wireguard-watchdog/releases/1.0.0/release.json`
+
+Preparar una release web desde la salida publicada:
+
+```powershell
+.\scripts\Prepare-WebRelease.ps1 -Version 1.0.0
+```
+
+Salida local generada:
+
+- `deploy\output\index.html`
+- `deploy\output\latest.json`
+- `deploy\output\releases\1.0.0\release.json`
+- `deploy\output\releases\1.0.0\AlfaNet.WireGuardWatchdog-win-x64-1.0.0.zip`
+
+Flujo sugerido de publicación:
+
+1. Ejecutar `.\scripts\Build-Msi.ps1 -Version x.y.z`.
+2. Ejecutar `.\scripts\Prepare-WebRelease.ps1 -Version x.y.z`.
+3. Subir el `.zip` a `releases/x.y.z/`.
+4. Subir `release.json` a `releases/x.y.z/`.
+5. Subir `latest.json` a la raíz del sitio.
+6. Subir `index.html` a la raíz del sitio.
+7. Subir `AlfaNet.WireGuardWatchdog.Setup.msi` a la raíz del sitio.
+
+## Qué falta
+
+- firma digital del instalador y de los ejecutables
+- opcionalmente agregar canales `stable` y `beta`
+- endurecer rollback y telemetría de actualizaciones
 
 ## Logs
 
@@ -231,7 +246,7 @@ En `Utils/WireGuardPaths.cs` quedó el `TODO` para encapsular el método final d
 
 La solución ya está preparada para agregar:
 
-- lectura más avanzada del estado del túnel,
-- métricas,
-- envío de eventos a un servidor central,
-- pruebas unitarias sobre interfaces y políticas.
+- lectura más avanzada del estado del túnel
+- métricas
+- envío de eventos a un servidor central
+- pruebas unitarias sobre interfaces y políticas

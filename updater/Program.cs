@@ -352,7 +352,7 @@ internal sealed record UpdateWorkspace(
 
 internal sealed record UpdateManifest(string Version, ManifestPackage Package);
 
-internal sealed record ManifestPackage(string Type, string Url, string Sha256, long SizeBytes, string EntryExecutable);
+internal sealed record ManifestPackage(string Type, string? Runtime, bool? SelfContained, string Url, string Sha256, long SizeBytes, string EntryExecutable);
 
 internal sealed record UpdateState(string Version, DateTime AppliedAtUtc, string SourceUrl);
 

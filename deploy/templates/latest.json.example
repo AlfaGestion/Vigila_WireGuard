@@ -5,6 +5,8 @@
   "mandatory": false,
   "package": {
     "type": "zip",
+    "runtime": "win-x64",
+    "selfContained": true,
     "url": "https://www.alfagestion.com.ar/wireguard-watchdog/releases/1.0.0/AlfaNet.WireGuardWatchdog-win-x64-1.0.0.zip",
     "sha256": "REEMPLAZAR_POR_HASH_REAL",
     "sizeBytes": 1234567,

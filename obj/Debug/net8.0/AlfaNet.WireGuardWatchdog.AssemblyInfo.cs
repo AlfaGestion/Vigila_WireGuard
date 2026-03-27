@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AlfaNet.WireGuardWatchdog")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+86f4841665293fd6f85dfbe7ab565ecc3ebbac40")]
 [assembly: System.Reflection.AssemblyProductAttribute("AlfaNet.WireGuardWatchdog")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AlfaNet.WireGuardWatchdog")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

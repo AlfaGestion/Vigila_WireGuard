@@ -37,7 +37,13 @@
       },
       "frameworks": {
         "native": {
-          "targetAlias": "native"
+          "targetAlias": "native",
+          "dependencies": {
+            "WixToolset.UI.wixext": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            }
+          }
         }
       }
     }

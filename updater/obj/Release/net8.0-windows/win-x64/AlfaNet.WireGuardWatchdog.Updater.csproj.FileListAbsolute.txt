@@ -199,3 +199,4 @@ C:\dev\Vigila_WireGuard\updater\obj\Release\net8.0-windows\win-x64\refint\AlfaNe
 C:\dev\Vigila_WireGuard\updater\obj\Release\net8.0-windows\win-x64\AlfaNet.WireGuardWatchdog.Updater.pdb
 C:\dev\Vigila_WireGuard\updater\obj\Release\net8.0-windows\win-x64\AlfaNet.WireGuardWatchdog.Updater.genruntimeconfig.cache
 C:\dev\Vigila_WireGuard\updater\obj\Release\net8.0-windows\win-x64\ref\AlfaNet.WireGuardWatchdog.Updater.dll
+C:\dev\Vigila_WireGuard\updater\obj\Release\net8.0-windows\win-x64\AlfaNet.WireGuardWatchdog.Updater.sourcelink.json
