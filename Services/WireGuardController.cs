@@ -48,6 +48,51 @@ public sealed class WireGuardController : IWireGuardController
         }
     }
 
+    public async Task<double?> GetLastHandshakeSecondsAgoAsync(string tunnelName, CancellationToken cancellationToken)
+    {
+        var wgExe = WireGuardPaths.WgExePath;
+        if (!File.Exists(wgExe))
+        {
+            _logger.LogWarning("No se encontró wg.exe en {Path}. No se puede verificar el handshake.", wgExe);
+            return null;
+        }
+
+        try
+        {
+            using var process = CreateProcess(wgExe, $"show \"{tunnelName}\" latest-handshakes");
+            process.Start();
+            var output = await process.StandardOutput.ReadToEndAsync(cancellationToken);
+            await process.WaitForExitAsync(cancellationToken);
+
+            // Formato de salida: "<public-key>\t<unix-timestamp>\n"
+            foreach (var line in output.Split('\n', StringSplitOptions.RemoveEmptyEntries))
+            {
+                var parts = line.Trim().Split('\t');
+                if (parts.Length >= 2 && long.TryParse(parts[1].Trim(), out var unixTs))
+                {
+                    if (unixTs == 0)
+                    {
+                        // Sin handshake previo
+                        return null;
+                    }
+
+                    var handshakeUtc = DateTimeOffset.FromUnixTimeSeconds(unixTs);
+                    return (DateTimeOffset.UtcNow - handshakeUtc).TotalSeconds;
+                }
+            }
+
+            _logger.LogWarning(
+                "No se encontraron datos de handshake para el túnel {TunnelName}. Salida: {Output}",
+                tunnelName, output.Trim());
+            return null;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error al obtener el último handshake del túnel {TunnelName}.", tunnelName);
+            return null;
+        }
+    }
+
     public async Task<CommandResult> RestartTunnelAsync(string tunnelName, CancellationToken cancellationToken)
     {
         try

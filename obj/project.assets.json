@@ -1715,7 +1715,7 @@
     "C:\\Users\\albert\\.nuget\\packages\\": {}
   },
   "project": {
-    "version": "1.0.0",
+    "version": "1.1.0",
     "restore": {
       "projectUniqueName": "C:\\dev\\Vigila_WireGuard\\AlfaNet.WireGuardWatchdog.csproj",
       "projectName": "AlfaNet.WireGuardWatchdog",

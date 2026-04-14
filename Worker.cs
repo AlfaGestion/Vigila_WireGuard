@@ -67,12 +67,34 @@ public sealed class Worker : BackgroundService
     {
         var status = await _connectivityProbe.GetStatusAsync(cancellationToken);
         var tunnelActive = await _wireGuardController.IsTunnelActiveAsync(options.TunnelName, cancellationToken);
+        var handshakeSecondsAgo = await _wireGuardController.GetLastHandshakeSecondsAgoAsync(options.TunnelName, cancellationToken);
 
-        LogStatus(status, tunnelActive);
+        LogStatus(status, tunnelActive, handshakeSecondsAgo);
 
         if (HasInternetBeenRestored(status))
         {
             await HandleInternetRestoreAsync(options, cancellationToken);
+            return;
+        }
+
+        // Si el handshake está vencido, reiniciar aunque el ping a la VPN no haya fallado todavía.
+        if (IsHandshakeStale(options, handshakeSecondsAgo))
+        {
+            var handshakeDesc = handshakeSecondsAgo.HasValue
+                ? $"{handshakeSecondsAgo.Value:F0} s de antigüedad (máximo: {options.MaxHandshakeAgeSeconds} s)"
+                : "sin handshake previo";
+
+            _logger.LogWarning(
+                "Handshake WireGuard vencido: {HandshakeDesc}. Se reiniciará el túnel.",
+                handshakeDesc);
+            _auditLogger.WriteWarning($"Handshake WireGuard vencido: {handshakeDesc}. Se reiniciará el túnel.");
+
+            await AttemptRestartAsync(
+                options,
+                $"Handshake vencido: {handshakeDesc}.",
+                cancellationToken);
+
+            _vpnFailureCount = 0;
         }
         else
         {
@@ -82,13 +104,25 @@ public sealed class Worker : BackgroundService
         _previousInternetAvailable = status.HasInternet;
     }
 
-    private void LogStatus(ConnectivityStatus status, bool tunnelActive)
+    private static bool IsHandshakeStale(WatchdogOptions options, double? handshakeSecondsAgo)
     {
+        if (options.MaxHandshakeAgeSeconds == 0) return false;
+        // Sin handshake previo también se considera vencido
+        return handshakeSecondsAgo == null || handshakeSecondsAgo > options.MaxHandshakeAgeSeconds;
+    }
+
+    private void LogStatus(ConnectivityStatus status, bool tunnelActive, double? handshakeSecondsAgo)
+    {
+        var handshakeInfo = handshakeSecondsAgo.HasValue
+            ? $"{handshakeSecondsAgo.Value:F0} s atrás"
+            : "sin dato";
+
         _logger.LogInformation(
-            "Estado actual. Internet: {Internet}; VPN: {Vpn}; Túnel activo: {TunnelActive}; Detalle: {Detail}",
+            "Estado actual. Internet: {Internet}; VPN: {Vpn}; Túnel activo: {TunnelActive}; Último handshake: {Handshake}; Detalle: {Detail}",
             status.HasInternet,
             status.HasVpnConnectivity,
             tunnelActive,
+            handshakeInfo,
             status.Detail);
     }
 
