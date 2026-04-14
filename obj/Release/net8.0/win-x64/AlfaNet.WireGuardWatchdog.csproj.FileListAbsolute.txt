@@ -241,3 +241,5 @@ C:\dev\Vigila_WireGuard\bin\Release\net8.0\win-x64\mscordbi.dll
 C:\dev\Vigila_WireGuard\bin\Release\net8.0\win-x64\mscorrc.dll
 C:\dev\Vigila_WireGuard\bin\Release\net8.0\win-x64\msquic.dll
 C:\dev\Vigila_WireGuard\obj\Release\net8.0\win-x64\AlfaNet.WireGuardWatchdog.sourcelink.json
+C:\dev\Vigila_WireGuard\bin\Release\net8.0\win-x64\updater\obj\Release\net8.0-windows\win-x64\AlfaNet.WireGuardWatchdog.Updater.sourcelink.json
+C:\dev\Vigila_WireGuard\bin\Release\net8.0\win-x64\deploy\output\releases\1.1.0\release.json

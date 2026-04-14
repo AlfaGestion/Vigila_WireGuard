@@ -145,6 +145,77 @@
       font-family: Consolas, "Courier New", monospace;
       font-size: 0.95em;
     }
+
+    .changelog {
+      margin-top: 22px;
+      background: rgba(255,255,255,0.88);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 24px 28px;
+    }
+
+    .changelog h2 {
+      margin: 0 0 18px;
+      font-size: 1.05rem;
+    }
+
+    .release {
+      border-left: 3px solid var(--accent);
+      padding-left: 16px;
+      margin-bottom: 24px;
+    }
+
+    .release:last-child {
+      margin-bottom: 0;
+    }
+
+    .release-header {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .release-version {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--ink);
+    }
+
+    .release-date {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .release-badge {
+      font-size: 0.78rem;
+      font-weight: 600;
+      background: #e0f4f5;
+      color: var(--accent-strong);
+      border-radius: 999px;
+      padding: 2px 9px;
+    }
+
+    .release ul {
+      margin-top: 6px;
+    }
+
+    .release li {
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+
+    .release-link {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 0.9rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .release-link:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -161,7 +232,7 @@
       </div>
 
       <p class="meta">
-        Versión actual publicada: <strong>1.0.0</strong><br>
+        Versión actual publicada: <strong>1.1.0</strong><br>
         Canal: <strong>stable</strong>
       </p>
     </section>
@@ -186,9 +257,40 @@
         <ul>
           <li><a href="./AlfaNet.WireGuardWatchdog.Setup.msi">Instalador MSI</a></li>
           <li><a href="./latest.json">Manifiesto latest.json</a></li>
+          <li><a href="./releases/1.1.0/AlfaNet.WireGuardWatchdog-win-x64-1.1.0.zip">Paquete 1.1.0</a></li>
           <li><a href="./releases/1.0.0/AlfaNet.WireGuardWatchdog-win-x64-1.0.0.zip">Paquete 1.0.0</a></li>
         </ul>
       </article>
+    </section>
+
+    <section class="changelog">
+      <h2>Historial de versiones</h2>
+
+      <div class="release">
+        <div class="release-header">
+          <span class="release-version">v1.1.0</span>
+          <span class="release-date">2026-04-14</span>
+          <span class="release-badge">última</span>
+        </div>
+        <ul>
+          <li>Verificación de handshake WireGuard: reinicia el túnel si el handshake supera los 150 s de antigüedad, independientemente del resultado del ping.</li>
+          <li>Nuevo parámetro <code>MaxHandshakeAgeSeconds</code> en la configuración (0 deshabilita la verificación).</li>
+          <li>El log de estado incluye ahora la antigüedad del último handshake.</li>
+        </ul>
+        <a class="release-link" href="./releases/1.1.0/AlfaNet.WireGuardWatchdog-win-x64-1.1.0.zip">Descargar paquete 1.1.0 →</a>
+      </div>
+
+      <div class="release">
+        <div class="release-header">
+          <span class="release-version">v1.0.0</span>
+          <span class="release-date">2026-03-27</span>
+        </div>
+        <ul>
+          <li>Versión inicial. Supervisión del túnel WireGuard con recuperación automática por ping fallido.</li>
+          <li>Instalador MSI con tarea de auto-actualización cada 6 horas.</li>
+        </ul>
+        <a class="release-link" href="./releases/1.0.0/AlfaNet.WireGuardWatchdog-win-x64-1.0.0.zip">Descargar paquete 1.0.0 →</a>
+      </div>
     </section>
 
     <p class="footer">

@@ -356,6 +356,7 @@ internal sealed record ManifestPackage(string Type, string? Runtime, bool? SelfC
 
 internal sealed record UpdateState(string Version, DateTime AppliedAtUtc, string SourceUrl);
 
+[JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
 [JsonSerializable(typeof(UpdateManifest))]
 [JsonSerializable(typeof(UpdateState))]
 internal sealed partial class UpdateJsonContext : JsonSerializerContext

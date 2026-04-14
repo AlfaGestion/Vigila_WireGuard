@@ -2,6 +2,7 @@ C:\dev\Vigila_WireGuard\publish\win-x64\AlfaNet.WireGuardWatchdog.exe
 C:\dev\Vigila_WireGuard\publish\win-x64\appsettings.json
 C:\dev\Vigila_WireGuard\publish\win-x64\deploy\output\latest.json
 C:\dev\Vigila_WireGuard\publish\win-x64\deploy\output\releases\1.0.0\release.json
+C:\dev\Vigila_WireGuard\publish\win-x64\deploy\output\releases\1.1.0\release.json
 C:\dev\Vigila_WireGuard\publish\win-x64\installer\obj\AlfaNet.WireGuardWatchdog.Setup.wixproj.nuget.dgspec.json
 C:\dev\Vigila_WireGuard\publish\win-x64\installer\obj\project.assets.json
 C:\dev\Vigila_WireGuard\publish\win-x64\updater\bin\Release\net8.0-windows\AlfaNet.WireGuardWatchdog.Updater.deps.json
@@ -11,6 +12,7 @@ C:\dev\Vigila_WireGuard\publish\win-x64\updater\bin\Release\net8.0-windows\win-x
 C:\dev\Vigila_WireGuard\publish\win-x64\updater\obj\AlfaNet.WireGuardWatchdog.Updater.csproj.nuget.dgspec.json
 C:\dev\Vigila_WireGuard\publish\win-x64\updater\obj\project.assets.json
 C:\dev\Vigila_WireGuard\publish\win-x64\updater\obj\Release\net8.0-windows\win-x64\AlfaNet.WireGuardWatchdog.Updater.deps.json
+C:\dev\Vigila_WireGuard\publish\win-x64\updater\obj\Release\net8.0-windows\win-x64\AlfaNet.WireGuardWatchdog.Updater.sourcelink.json
 C:\dev\Vigila_WireGuard\publish\win-x64\AlfaNet.WireGuardWatchdog.dll
 C:\dev\Vigila_WireGuard\publish\win-x64\AlfaNet.WireGuardWatchdog.deps.json
 C:\dev\Vigila_WireGuard\publish\win-x64\AlfaNet.WireGuardWatchdog.runtimeconfig.json
