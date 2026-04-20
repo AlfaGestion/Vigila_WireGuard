@@ -162,8 +162,18 @@ Objetivo del instalador:
 - registra el servicio `AlfaNet.WireGuardWatchdog`
 - instala también el updater en `Updater\`
 - deja el servicio en inicio automático
+- exige permisos de administrador y muestra un aviso claro si no los tiene
 - soporta `MajorUpgrade` para reemplazar versiones anteriores
 - muestra interfaz en español
+
+Instalación simple para el usuario final:
+
+1. Tener `WireGuard` instalado en Windows.
+2. Abrir `AlfaNet.WireGuardWatchdog.Setup.msi`.
+3. Si Windows pide permisos de administrador, aceptarlos.
+4. Finalizar el asistente.
+
+Al terminar, el servicio `AlfaNet.WireGuardWatchdog` queda instalado como servicio de Windows con inicio automático.
 
 Build sugerido:
 

@@ -14,6 +14,9 @@
     <SummaryInformation Manufacturer="Alfa Gestion" />
     <MajorUpgrade DowngradeErrorMessage="Ya hay una version mas nueva de AlfaNet WireGuard Watchdog instalada." />
     <MediaTemplate EmbedCab="yes" />
+    <Launch
+      Condition="Privileged"
+      Message="Para instalar AlfaNet WireGuard Watchdog debe ejecutar este instalador con permisos de administrador. Haga clic derecho sobre el MSI y elija instalar, o vuelva a abrirlo aceptando la elevacion de Windows." />
     <Property
       Id="WIXUI_EXITDIALOGOPTIONALTEXT"
       Value="Instalación completada. El servicio AlfaNet WireGuard Watchdog quedó instalado. Si no se inició automáticamente, revíselo en Servicios de Windows o en los logs del sistema." />

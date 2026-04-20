@@ -1,15 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "aHLPNiddUkI=",
+  "dgSpecHash": "XvV036IU8Wk=",
   "success": true,
   "projectFilePath": "C:\\dev\\Vigila_WireGuard\\updater\\AlfaNet.WireGuardWatchdog.Updater.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\albert\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.25\\microsoft.net.illink.tasks.8.0.25.nupkg.sha512",
+    "C:\\Users\\albert\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.26\\microsoft.net.illink.tasks.8.0.26.nupkg.sha512",
     "C:\\Users\\albert\\.nuget\\packages\\system.diagnostics.eventlog\\8.0.1\\system.diagnostics.eventlog.8.0.1.nupkg.sha512",
     "C:\\Users\\albert\\.nuget\\packages\\system.serviceprocess.servicecontroller\\8.0.1\\system.serviceprocess.servicecontroller.8.0.1.nupkg.sha512",
-    "C:\\Users\\albert\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\8.0.25\\microsoft.netcore.app.runtime.win-x64.8.0.25.nupkg.sha512",
-    "C:\\Users\\albert\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\8.0.25\\microsoft.windowsdesktop.app.runtime.win-x64.8.0.25.nupkg.sha512",
-    "C:\\Users\\albert\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\8.0.25\\microsoft.aspnetcore.app.runtime.win-x64.8.0.25.nupkg.sha512"
+    "C:\\Users\\albert\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\8.0.26\\microsoft.netcore.app.runtime.win-x64.8.0.26.nupkg.sha512",
+    "C:\\Users\\albert\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\8.0.26\\microsoft.windowsdesktop.app.runtime.win-x64.8.0.26.nupkg.sha512",
+    "C:\\Users\\albert\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\8.0.26\\microsoft.aspnetcore.app.runtime.win-x64.8.0.26.nupkg.sha512"
   ],
   "logs": []
 }

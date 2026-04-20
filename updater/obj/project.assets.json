@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net8.0-windows7.0": {
-      "Microsoft.NET.ILLink.Tasks/8.0.25": {
+      "Microsoft.NET.ILLink.Tasks/8.0.26": {
         "type": "package",
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
@@ -61,7 +61,7 @@
       }
     },
     "net8.0-windows7.0/win-x64": {
-      "Microsoft.NET.ILLink.Tasks/8.0.25": {
+      "Microsoft.NET.ILLink.Tasks/8.0.26": {
         "type": "package",
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
@@ -106,10 +106,10 @@
     }
   },
   "libraries": {
-    "Microsoft.NET.ILLink.Tasks/8.0.25": {
-      "sha512": "sqX4nmBft05ivqKvUT4nxaN8rT3apCLt9SWFkfRrQPwra1zPwFknQAw1lleuMCKOCLvVmOWwrC2iPSm9RiXZUg==",
+    "Microsoft.NET.ILLink.Tasks/8.0.26": {
+      "sha512": "o7/yVssM2r9Wyln2s9edBd5ANZXqdSdBI+g7JqXkyJmXrhs2WsJp25K5yPnYrTgdKBCjKB8bg+O2oew4sgzFaA==",
       "type": "package",
-      "path": "microsoft.net.illink.tasks/8.0.25",
+      "path": "microsoft.net.illink.tasks/8.0.26",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -123,7 +123,7 @@
         "build/Microsoft.NET.ILLink.Analyzers.props",
         "build/Microsoft.NET.ILLink.Tasks.props",
         "build/Microsoft.NET.ILLink.targets",
-        "microsoft.net.illink.tasks.8.0.25.nupkg.sha512",
+        "microsoft.net.illink.tasks.8.0.26.nupkg.sha512",
         "microsoft.net.illink.tasks.nuspec",
         "tools/net472/ILLink.Tasks.dll",
         "tools/net472/ILLink.Tasks.dll.config",
@@ -235,7 +235,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
-      "Microsoft.NET.ILLink.Tasks >= 8.0.25",
+      "Microsoft.NET.ILLink.Tasks >= 8.0.26",
       "System.ServiceProcess.ServiceController >= 8.0.1"
     ]
   },
@@ -285,7 +285,7 @@
           "Microsoft.NET.ILLink.Tasks": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[8.0.25, )",
+            "version": "[8.0.26, )",
             "autoReferenced": true
           },
           "System.ServiceProcess.ServiceController": {
@@ -307,15 +307,15 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
-            "version": "[8.0.25, 8.0.25]"
+            "version": "[8.0.26, 8.0.26]"
           },
           {
             "name": "Microsoft.NETCore.App.Runtime.win-x64",
-            "version": "[8.0.25, 8.0.25]"
+            "version": "[8.0.26, 8.0.26]"
           },
           {
             "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
-            "version": "[8.0.25, 8.0.25]"
+            "version": "[8.0.26, 8.0.26]"
           }
         ],
         "frameworkReferences": {
@@ -323,7 +323,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202/PortableRuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {
